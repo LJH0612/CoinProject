@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="interesting">
+	<!-- 1.추가 -->
+	<insert id="insertInter">
+		INSERT INTO interesting (userId, coinId) 
+		VALUES (#{userId}, #{coinId})
+	</insert>
+	
+	<!-- 1. 장바구니 추가
+		 <insert id="insertCart">
+		INSERT INTO tbl_cart(userId, productId, amount) 
+		VALUES ( #{userId}, #{productId}, #{amount} )
+	</insert> -->
+	
+	
+	<!-- 2. 목록 -->
+	<select id="viewInter" resultType="com.example.spring02.model.inter.dto.InterVO">
+		
+		SELECT
+			i.interId , 
+			i.userId ,
+			c.coinId ,
+			m.userName , 
+			c.coinName
+		FROM
+			interesting i, coin c, tbl_member m
+		WHERE m.userId = i.userId
+			AND c.coinId = i.coinId
+			AND i.userId = #{userId}
+		ORDER BY
+			i.interId
+		
+		<!--  	
+		SELECT
+			p.product_id AS productId,
+			p.product_name AS productName, 
+			product_price AS productPrice,
+			SUM(amount) amount, 
+			SUM(product_price * amount) money
+		FROM
+			tbl_member m, tbl_product p, tbl_cart c
+		WHERE 
+			m.user_id = c.user_id 
+		AND p.product_id = c.product_id
+		AND m.user_id = #{userId} 
+		GROUP BY p.product_id, p.product_name, p.product_price
+		ORDER BY amount DESC
+		 -->	
+	</select>
+	
+ <!-- 2. 장바구니 목록
+	<select id="listCart" resultType="com.example.spring02.model.shop.dto.CartVO">
+		
+		SELECT
+			c.cartId , 
+			c.userId ,
+			p.productId ,
+			m.userName , 
+			p.productName , 
+			c.amount, 
+			p.productPrice ,
+			(p.productPrice * amount) money
+		FROM
+			tbl_member m, tbl_product p, tbl_cart c
+		WHERE m.userId = c.userId
+			AND p.productId = c.productId
+			AND c.userId = #{userId}
+		ORDER BY
+			c.cartId -->
+	
+	<!--3.  삭제 -->
+	<delete id="deleteInter">
+		DELETE FROM interesting WHERE interId = #{interId}
+	</delete>
+
+	<!-- <delete id="deleteCart">
+		DELETE FROM tbl_cart WHERE cartId = #{cartId}
+	</delete> -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

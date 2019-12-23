@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="filtering">
+	
+	<select id="selectfiltering" resultType="com.example.spring02.model.filtering.dto.FilteringVO">
+	SELECT DATE, PRICE, max(PRICE)
+	FROM ${t_Name} 
+	
+	where PRICE >= ${yeild_low}
+	and PRICE  	
+	<![CDATA[<=]]> 
+	${yeild_high}
+	
+	
+
+
+</select>
+
+</mapper>

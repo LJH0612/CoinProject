@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="prediction">
+
+
+
+<select id="selectBitCoin" resultType="PredictionVO">
+	SELECT DATE, P_LOW, P_HIGH, PRICE, CLOSE FROM PRE_BITCOIN
+</select>
+
+<select id="selectEthereum" resultType="PredictionVO">
+	SELECT DATE, P_LOW, P_HIGH, PRICE, CLOSE FROM PRE_ETHEREUM
+</select>
+
+<select id="selectXRP" resultType="PredictionVO">
+	SELECT DATE, P_LOW, P_HIGH, PRICE, CLOSE FROM PRE_XRP
+</select>
+
+<select id="selectBitcoincash" resultType="PredictionVO">
+	SELECT DATE, P_LOW, P_HIGH, PRICE, CLOSE FROM PRE_BITCOINCASH
+</select>
+
+<select id="selectLitecoin" resultType="PredictionVO">
+	SELECT DATE, P_LOW, P_HIGH, PRICE, CLOSE FROM PRE_LITECOIN
+</select>
+
+<select id="selectTether" resultType="PredictionVO">
+	SELECT DATE, P_LOW, P_HIGH, PRICE, CLOSE FROM PRE_TETHER
+</select>
+
+</mapper>
